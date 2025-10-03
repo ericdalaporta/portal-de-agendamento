@@ -1,0 +1,12 @@
+site_name: Portal de Agendamento
+theme: readthedocs
+markdown_extensions:
+  - attr_list
+  - footnotes
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
