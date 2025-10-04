@@ -88,6 +88,10 @@ flowchart TD
 
 ```
 
+## Diagrama de Classes
+
+![diagrama-de-classes](/assets/diagrama-classes.png)
+
 ## Contato
 
 O repositório foi originalmente desenvolvido por Eric Dala Porta, Email para contato: ericdasilvadalaporta@gmail.com
