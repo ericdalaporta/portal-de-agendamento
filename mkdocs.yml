@@ -10,3 +10,8 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+
+nav:
+  - 'Página Inicial': 'index.md'
+  - 'Requisitos do Sistema': 'Requisitos.md'
+  - 'Diagrama de Classes': 'Diagrama de Classes.md'
