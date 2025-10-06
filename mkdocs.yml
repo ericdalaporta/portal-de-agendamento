@@ -13,5 +13,4 @@ markdown_extensions:
 
 nav:
   - 'Página Inicial': 'index.md'
-  - 'Requisitos do Sistema': 'Requisitos.md'
   - 'Diagrama de Classes': 'Diagrama de Classes.md'
