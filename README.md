@@ -59,34 +59,7 @@ Para executar e testar a aplicação, siga os passos:
 
 ## Fluxograma do Sistema
 
-```mermaid
----
-config:
-  theme: mc
-  look: classic
-  layout: dagre
----
-flowchart TD
- subgraph exemplo["Portal de Agendamento"]
-        B("Página de Login")
-        A[/"Usuário abre index.html"/]
-        C{"Escolhe Perfil"}
-        D("Painel principal")
-        E("Página do Aluno")
-        F["Visualizar Salas"]
-        G["Adicionar Sala"]
-        H["Agendar Sala"]
-        I["Visualizar Salas"]
-  end
-    A --> B
-    B --> C
-    C -- Sou Servidor --> D
-    C -- Sou Aluno --> E
-    D --> F & G & H
-    E --> I
-    style exemplo stroke:none
-
-```
+![diagrama-casodeuso](/assets/diagrama-casodeuso.png)
 
 ## Diagrama de Classes
 
