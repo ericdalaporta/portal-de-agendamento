@@ -4,6 +4,12 @@ Sistema web front-end para agendamento e gerenciamento de ambientes universitár
 
 ![PrintSalasDisponiveisECadastro](/assets/Print.png)
 
+## Antes de tudo
+
+Para uma documentação completa e bem formatada, **acesse nosso site clicando aqui**.
+
+[**Documentação Completa do Projeto**](https://ericdalaporta.github.io/portal-de-agendamento/)
+
 ## Sumário
 
 - [Pré-requisitos](#pré-requisitos)  
