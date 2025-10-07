@@ -64,37 +64,8 @@ Para executar e testar a aplicação, siga os passos:
     * Clicar em **"Agendar"** em um dos cards para marcar um horário, definindo período, dias da semana e disciplina.
 
 ## Fluxograma do Sistema
-```mermaid
-flowchart TD
-    Start([Acessar Portal]) --> Login[Fazer Login]
-    Login --> Decision{Tipo de Usuário?}
-    
-    Decision -->|Servidor| PainelServidor[Painel do Servidor]
-    Decision -->|Aluno| PainelAluno[Painel do Aluno]
-    
-    PainelServidor --> FiltrarSalas[Filtrar Salas]
-    PainelServidor --> CriarSala[Criar Sala]
-    PainelServidor --> ExcluirSala[Excluir Sala]
-    PainelServidor --> CriarAgendamento[Criar Agendamento]
-    PainelServidor --> EditarAgendamento[Editar Agendamento]
-    PainelServidor --> ExcluirAgendamento[Excluir Agendamento]
-    
-    PainelAluno --> AulasHoje[Visualizar Aulas de Hoje]
-    PainelAluno --> ProximasAulas[Visualizar Próximas Aulas]
-    
-    FiltrarSalas --> Logout[Sair]
-    CriarSala --> Logout
-    ExcluirSala --> Logout
-    CriarAgendamento --> Logout
-    EditarAgendamento --> Logout
-    ExcluirAgendamento --> Logout
-    AulasHoje --> Logout
-    ProximasAulas --> Logout
-    
-    Logout --> Login
-    
-```
 
+![diagrama-caso-de-uso](/assets/diagrama-casodeuso.png)
 ## Diagrama de Classes
 
 ![diagrama-de-classes](/assets/diagrama-classes.png)
