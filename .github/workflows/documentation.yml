@@ -27,19 +27,20 @@ jobs:
           pip install --requirement requirements.txt
 
       - name: Constrói páginas HTML com MKDocs
-        run: mkdocs build  
+        run: mkdocs build 
 
-       
       - name: Move a documentação para a pasta /docs
-        run: mv site docs
+        run: |
+          rm -rf docs  # Apaga a pasta 'docs' original (que continha só o index.md)
+          mv site docs # Renomeia a pasta 'site' (com o resultado do build) para 'docs'
 
       - name: Configura o GitHub Pages
         uses: actions/configure-pages@v4
- 
+
       - name: Upload do artefato para o GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'  
+          path: '.'
 
       - name: Publica no GitHub Pages
         id: deployment
