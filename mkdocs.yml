@@ -1,16 +1,16 @@
 site_name: Portal de Agendamento
-theme: readthedocs
-markdown_extensions:
-  - attr_list
-  - footnotes
-  - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.superfences
-
+site_description: Documentação oficial do front-end do Portal de Agendamento
+site_url: https://ericdalaporta.github.io/portal-de-agendamento/
+repo_url: https://github.com/ericdalaporta/portal-de-agendamento
 nav:
-  - 'Página Inicial': 'index.md'
-
+  - Visão Geral: index.md
+  - Guia de Uso: guia.md
+  - Testes e Qualidade: testes.md
+  - Arquitetura: arquitetura.md
+theme:
+  name: readthedocs
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
