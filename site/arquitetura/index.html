@@ -89,23 +89,35 @@
               
                 <h1 id="arquitetura">Arquitetura<a class="headerlink" href="#arquitetura" title="Permanent link">&para;</a></h1>
 <h2 id="casos-de-uso">Casos de Uso<a class="headerlink" href="#casos-de-uso" title="Permanent link">&para;</a></h2>
-<pre><code class="language-mermaid">usecaseDiagram
-    actor Servidor
-    actor Aluno
+<pre><code class="language-mermaid">flowchart LR
+    Servidor((Servidor))
+    Aluno((Aluno))
 
-    rectangle &quot;Portal de Agendamento&quot; {
-        Servidor --&gt; (Fazer Login)
-        Servidor --&gt; (Filtrar Salas)
-        Servidor --&gt; (Criar Sala)
-        Servidor --&gt; (Excluir Sala)
-        Servidor --&gt; (Criar Agendamento)
-        Servidor --&gt; (Editar Agendamento)
-        Servidor --&gt; (Excluir Agendamento)
+    subgraph Portal_de_Agendamento [Portal de Agendamento]
+        UCLoginServidor([Fazer Login - Servidor])
+        UCFiltrar([Filtrar Salas])
+        UCCriarSala([Criar Sala])
+        UCExcluirSala([Excluir Sala])
+        UCCriarAg([Criar Agendamento])
+        UCEditarAg([Editar Agendamento])
+        UCExcluirAg([Excluir Agendamento])
 
-        Aluno --&gt; (Fazer Login)
-        Aluno --&gt; (Visualizar Próximas Aulas)
-        Aluno --&gt; (Visualizar Aulas de Hoje)
-    }
+        UCLoginAluno([Fazer Login - Aluno])
+        UCProximas([Visualizar Próximas Aulas])
+        UCHoje([Visualizar Aulas de Hoje])
+    end
+
+    Servidor --&gt; UCLoginServidor
+    Servidor --&gt; UCFiltrar
+    Servidor --&gt; UCCriarSala
+    Servidor --&gt; UCExcluirSala
+    Servidor --&gt; UCCriarAg
+    Servidor --&gt; UCEditarAg
+    Servidor --&gt; UCExcluirAg
+
+    Aluno --&gt; UCLoginAluno
+    Aluno --&gt; UCProximas
+    Aluno --&gt; UCHoje
 </code></pre>
 <h2 id="diagrama-de-classes">Diagrama de Classes<a class="headerlink" href="#diagrama-de-classes" title="Permanent link">&para;</a></h2>
 <pre><code class="language-mermaid">classDiagram

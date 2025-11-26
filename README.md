@@ -110,23 +110,35 @@ O console exibirá os resultados TAP do QUnit e um resumo textual de cobertura. 
 ## Fluxograma do Sistema
 
 ```mermaid
-usecaseDiagram
-    actor Servidor
-    actor Aluno
+flowchart LR
+    Servidor((Servidor))
+    Aluno((Aluno))
 
-    rectangle "Portal de Agendamento" {
-        Servidor --> (Fazer Login)
-        Servidor --> (Filtrar Salas)
-        Servidor --> (Criar Sala)
-        Servidor --> (Excluir Sala)
-        Servidor --> (Criar Agendamento)
-        Servidor --> (Editar Agendamento)
-        Servidor --> (Excluir Agendamento)
+    subgraph Portal_de_Agendamento [Portal de Agendamento]
+        UCLoginServidor([Fazer Login - Servidor])
+        UCFiltrar([Filtrar Salas])
+        UCCriarSala([Criar Sala])
+        UCExcluirSala([Excluir Sala])
+        UCCriarAg([Criar Agendamento])
+        UCEditarAg([Editar Agendamento])
+        UCExcluirAg([Excluir Agendamento])
 
-        Aluno --> (Fazer Login)
-        Aluno --> (Visualizar Próximas Aulas)
-        Aluno --> (Visualizar Aulas de Hoje)
-    }
+        UCLoginAluno([Fazer Login - Aluno])
+        UCProximas([Visualizar Próximas Aulas])
+        UCHoje([Visualizar Aulas de Hoje])
+    end
+
+    Servidor --> UCLoginServidor
+    Servidor --> UCFiltrar
+    Servidor --> UCCriarSala
+    Servidor --> UCExcluirSala
+    Servidor --> UCCriarAg
+    Servidor --> UCEditarAg
+    Servidor --> UCExcluirAg
+
+    Aluno --> UCLoginAluno
+    Aluno --> UCProximas
+    Aluno --> UCHoje
 ```
 ## Diagrama de Classes
 
