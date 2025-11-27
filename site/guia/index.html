@@ -110,10 +110,10 @@
 </tbody>
 </table>
 <h2 id="instalacao">Instalação<a class="headerlink" href="#instalacao" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">git clone https://github.com/ericdalaporta/portal-de-agendamento.git
-cd portal-de-agendamento
-npm install   # opcional, usado para ESLint e QUnit
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ericdalaporta/portal-de-agendamento.git
+<span class="nb">cd</span><span class="w"> </span>portal-de-agendamento
+npm<span class="w"> </span>install<span class="w">   </span><span class="c1"># opcional, usado para ESLint e QUnit</span>
+</code></pre></div>
 <h2 id="execucao">Execução<a class="headerlink" href="#execucao" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Abra <code>index.html</code> no navegador ou utilize a extensão <strong>Live Server</strong> do VS Code.</li>
@@ -177,6 +177,8 @@ npm install   # opcional, usado para ESLint e QUnit
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      <script src="../js/mermaid-init.js"></script>
       <script src="../search/main.js"></script>
     <script>
         jQuery(function () {

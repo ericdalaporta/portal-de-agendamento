@@ -91,18 +91,18 @@
               
                 <h1 id="testes-e-qualidade">Testes e Qualidade<a class="headerlink" href="#testes-e-qualidade" title="Permanent link">&para;</a></h1>
 <h2 id="eslint-9-flat-config">ESLint 9 (flat config)<a class="headerlink" href="#eslint-9-flat-config" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">npm install   # apenas na primeira vez
-npm run lint
-</code></pre>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w">   </span><span class="c1"># apenas na primeira vez</span>
+npm<span class="w"> </span>run<span class="w"> </span>lint
+</code></pre></div>
 <ul>
 <li>Analisa todos os arquivos em <code>js/</code>.</li>
 <li>Permite <code>console.log</code> e ignora <code>node_modules</code>, <code>site</code> e <code>assets</code>.</li>
 <li>Reporta problemas diretamente no terminal.</li>
 </ul>
 <h2 id="testes-unitarios-com-qunit-nyc">Testes Unitários com QUnit + NYC<a class="headerlink" href="#testes-unitarios-com-qunit-nyc" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">npm install   # se ainda não fez
-npm test
-</code></pre>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w">   </span><span class="c1"># se ainda não fez</span>
+npm<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
 <ul>
 <li>Executa <code>test/script.test.js</code>, cobrindo as funções de <code>AgendaFuncoes</code>.</li>
 <li>Gera saída TAP no terminal e relatório de cobertura textual.</li>
@@ -158,6 +158,8 @@ npm test
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      <script src="../js/mermaid-init.js"></script>
       <script src="../search/main.js"></script>
     <script>
         jQuery(function () {

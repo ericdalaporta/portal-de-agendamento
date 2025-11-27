@@ -89,7 +89,7 @@
               
                 <h1 id="arquitetura">Arquitetura<a class="headerlink" href="#arquitetura" title="Permanent link">&para;</a></h1>
 <h2 id="casos-de-uso">Casos de Uso<a class="headerlink" href="#casos-de-uso" title="Permanent link">&para;</a></h2>
-<pre><code class="language-mermaid">flowchart LR
+<pre class="mermaid"><code>flowchart LR
     Servidor((Servidor))
     Aluno((Aluno))
 
@@ -117,10 +117,9 @@
 
     Aluno --&gt; UCLoginAluno
     Aluno --&gt; UCProximas
-    Aluno --&gt; UCHoje
-</code></pre>
+    Aluno --&gt; UCHoje</code></pre>
 <h2 id="diagrama-de-classes">Diagrama de Classes<a class="headerlink" href="#diagrama-de-classes" title="Permanent link">&para;</a></h2>
-<pre><code class="language-mermaid">classDiagram
+<pre class="mermaid"><code>classDiagram
     direction TB
 
     class AgendaFuncoes {
@@ -218,8 +217,7 @@
     FuncoesAlunoJS --&gt; DadosAcademicosAluno
     FuncoesAlunoJS --&gt; AgendaFuncoes : reaproveita
     LoginJS --&gt; FuncoesAlunoJS : direciona para aluno.html
-    LoginJS --&gt; inicializarInterface : direciona para principal.html
-</code></pre>
+    LoginJS --&gt; inicializarInterface : direciona para principal.html</code></pre>
 <h2 id="estrutura-dos-scripts">Estrutura dos Scripts<a class="headerlink" href="#estrutura-dos-scripts" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>js/script.js</code> contém <code>AgendaFuncoes</code>, <code>estadoAplicacao</code>, <code>renderizadores</code>, <code>manipuladores</code> e o <code>inicializarInterface</code>, que integra Bootstrap e Flatpickr.</li>
@@ -266,6 +264,8 @@
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      <script src="../js/mermaid-init.js"></script>
       <script src="../search/main.js"></script>
     <script>
         jQuery(function () {
