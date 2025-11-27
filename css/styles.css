@@ -24,16 +24,21 @@ body {
     margin: auto;
 }
 
-.container-login {
+.pagina-login {
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: var(--bs-body-bg);
+    padding: 24px;
+}
+
+.container-login {
     width: 100%;
+    max-width: 520px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cabecalho-principal {
