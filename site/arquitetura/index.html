@@ -89,7 +89,7 @@
               
                 <h1 id="arquitetura">Arquitetura<a class="headerlink" href="#arquitetura" title="Permanent link">&para;</a></h1>
 <h2 id="casos-de-uso">Casos de Uso<a class="headerlink" href="#casos-de-uso" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart LR
+<div class="mermaid">flowchart LR
     Servidor((Servidor))
     Aluno((Aluno))
 
@@ -117,9 +117,9 @@
 
     Aluno --&gt; UCLoginAluno
     Aluno --&gt; UCProximas
-    Aluno --&gt; UCHoje</code></pre>
+    Aluno --&gt; UCHoje</div>
 <h2 id="diagrama-de-classes">Diagrama de Classes<a class="headerlink" href="#diagrama-de-classes" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>classDiagram
+<div class="mermaid">classDiagram
     direction TB
 
     class AgendaFuncoes {
@@ -217,7 +217,7 @@
     FuncoesAlunoJS --&gt; DadosAcademicosAluno
     FuncoesAlunoJS --&gt; AgendaFuncoes : reaproveita
     LoginJS --&gt; FuncoesAlunoJS : direciona para aluno.html
-    LoginJS --&gt; inicializarInterface : direciona para principal.html</code></pre>
+    LoginJS --&gt; inicializarInterface : direciona para principal.html</div>
 <h2 id="estrutura-dos-scripts">Estrutura dos Scripts<a class="headerlink" href="#estrutura-dos-scripts" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>js/script.js</code> contém <code>AgendaFuncoes</code>, <code>estadoAplicacao</code>, <code>renderizadores</code>, <code>manipuladores</code> e o <code>inicializarInterface</code>, que integra Bootstrap e Flatpickr.</li>

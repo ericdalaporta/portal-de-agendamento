@@ -15,16 +15,16 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.icon-space {
+.espacamento-icone {
     margin-right: 12px;
 }
 
-.main-container {
+.container-principal {
     max-width: 1280px;
     margin: auto;
 }
 
-.login-container {
+.container-login {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,78 +34,86 @@ body {
     background-color: var(--bs-body-bg);
 }
 
-.login-card,
-.room-card,
-.agendamento-card,
-.filters-card {
+.cartao-login,
+.cartao-filtros {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border-color);
     box-shadow: 0 2px 5px var(--card-active-shadow);
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.login-card {
+.cartao-sala,
+.cartao-agendamento {
+    background-color: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cartao-login {
     width: 100%;
     max-width: 450px;
     border-radius: 0.75rem;
 }
 
-.room-card {
+.cartao-sala {
     border-radius: 0.5rem;
     transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     display: flex;
     flex-direction: column;
 }
 
-.room-card:hover {
+.cartao-sala:hover {
     transform: translateY(-4px);
     box-shadow: 0 4px 12px var(--card-hover-shadow);
 }
 
-.room-card .card-header {
+.cartao-sala .card-header {
     background-color: transparent;
     border-bottom: 1px solid var(--card-border-color);
     font-weight: 600;
     min-width: 0;
 }
 
-.room-card .card-header h5 {
+.cartao-sala .card-header h5 {
     word-break: break-all;
 }
 
-.room-card .card-body {
+.cartao-sala .card-body {
     flex-grow: 1;
 }
 
-.room-card .card-body p {
+.cartao-sala .card-body p {
     margin-bottom: 0.75rem;
     color: var(--text-muted);
     display: flex;
     align-items: center;
 }
 
-.room-card .card-body i {
+.cartao-sala .card-body i {
     margin-right: 14px;
     font-size: 1.1rem;
 }
 
-.room-card .card-footer {
+.cartao-sala .card-footer {
     background-color: transparent;
     border-top: 1px solid var(--card-border-color);
 }
 
-.agendamento-card {
+.cartao-agendamento {
     border-radius: 0.5rem;
     padding: 1.5rem;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.agendamento-card:hover {
+.cartao-agendamento:hover {
     transform: translateY(-2px);
     box-shadow: 0 2px 8px var(--card-hover-shadow);
 }
 
-.agendamento-header {
+.cabecalho-agendamento {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -113,16 +121,16 @@ body {
     flex-wrap: wrap;
 }
 
-.agendamento-header h5 {
+.cabecalho-agendamento h5 {
     margin-bottom: 0;
     font-weight: 600;
 }
 
-.agendamento-card .row .col-md-6 > p {
+.cartao-agendamento .row .col-md-6 > p {
     margin-bottom: 0.5rem !important;
 }
 
-.filters-card {
+.cartao-filtros {
     padding: 1.5rem;
     border-radius: 0.5rem;
 }
@@ -146,12 +154,12 @@ body {
     font-weight: 600;
 }
 
-.login-card .nav-tabs .nav-link {
+.cartao-login .nav-tabs .nav-link {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
 }
 
-.login-card .nav-tabs .nav-link i {
+.cartao-login .nav-tabs .nav-link i {
     margin-right: 8px;
 }
 
@@ -190,7 +198,7 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.badge-agendamentos {
+.selo-agendamentos {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -207,58 +215,73 @@ body {
     transition: background-color 0.2s ease;
 }
 
-.room-card .room-card-actions {
+.cartao-sala .acoes-cartao-sala {
+     /* ações do cartão de sala */
     display: flex;
     align-items: center;
 }
 
-.room-card .badge {
+.cartao-sala .badge {
+     /* badge do cartão de sala */
     transition: margin-right 0.3s ease-in-out;
 }
 
-.room-card .btn-excluir-sala {
+.cartao-sala .btn-excluir-sala {
+     /* botão de excluir sala */
     background-color: transparent;
     border: none;
     color: var(--bs-danger);
-    width: 0;
+    width: 32px;
+    height: 32px;
     padding: 0;
+    margin-left: 6px;
     opacity: 0;
     overflow: hidden;
-    transition: all 0.3s ease-in-out;
+    transition: opacity 0.3s ease, transform 0.3s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
+    transform: translateX(10px);
 }
 
-.room-card:hover .room-card-actions .badge {
+.cartao-sala:hover .acoes-cartao-sala .badge {
+     /* badge ao passar o mouse na sala */
     margin-right: 8px;
 }
 
-.room-card:hover .room-card-actions .btn-excluir-sala {
-    width: 31px;
+.cartao-sala:hover .acoes-cartao-sala .btn-excluir-sala {
+     /* botão excluir sala ao passar o mouse */
     opacity: 1;
     border-width: 1px;
+    pointer-events: auto;
+    transform: translateX(0);
 }
 
 .status-disponivel {
+     /* texto de sala disponível */
     color: #198754;
     font-weight: 500;
 }
 
 .status-ocupada {
+     /* texto de sala ocupada */
     color: #dc3545;
     font-weight: 500;
 }
 
-.dias-mobile {
+.dias-celular {
+     /* dias da semana no mobile */
     display: none;
 }
 
+/* aqui tem o mobile */
+
 @media (min-width: 768px) {
-    .dias-mobile {
+    .dias-celular {
         display: none !important;
     }
-    .dias-desktop {
+    .dias-computador {
         display: block;
     }
 }
@@ -269,33 +292,33 @@ body {
         min-height: 100vh;
     }
 
-    .main-container {
+    .container-principal {
         padding-top: 2rem !important;
         padding-bottom: 2rem !important;
     }
 
-    .main-container header.d-flex {
+    .container-principal header.d-flex {
         flex-direction: column !important;
         align-items: stretch !important;
         gap: 1.5rem;
         margin-bottom: 1.5rem !important;
     }
 
-    .main-container header .d-flex.gap-2 {
+    .container-principal header .d-flex.gap-2 {
         flex-direction: column !important;
         gap: 0.75rem !important;
         width: 100%;
         margin-top: 0.5rem;
     }
 
-    .main-container header .btn,
-    .main-container header a.btn {
+    .container-principal header .btn,
+    .container-principal header a.btn {
         width: 100%;
         margin-bottom: 0 !important;
     }
 
-    .filters-card,
-    .agendamento-card {
+    .cartao-filtros,
+    .cartao-agendamento {
         padding: 1rem;
         margin-bottom: 1.5rem !important;
     }
@@ -308,20 +331,23 @@ body {
         margin-bottom: 1rem;
     }
 
-    .room-card,
-    .agendamento-card {
+    .cartao-sala,
+    .cartao-agendamento {
         margin-bottom: 0 !important;
     }
 
-    .room-card .card-body p {
+    .cartao-sala .card-body p {
         font-size: 0.9rem;
     }
 
-    .room-card .room-card-actions .btn-excluir-sala {
+    .cartao-sala .acoes-cartao-sala .btn-excluir-sala {
         width: auto;
         padding: 0.375rem 0.75rem;
         opacity: 1;
         border-width: 1px;
+        pointer-events: auto;
+        transform: none;
+        margin-left: 0;
     }
 
     .nav-tabs {
@@ -361,67 +387,69 @@ body {
     }
 
     .nav-tabs .nav-link i,
-    .nav-tabs .nav-link .badge-agendamentos {
+    .nav-tabs .nav-link .selo-agendamentos {
         display: none !important;
     }
 
-    .login-container {
+    .container-login {
         align-items: center;
         min-height: 100vh;
     }
 
-    .login-card {
+    .cartao-login {
         max-width: 380px;
         width: 100%;
         margin: auto;
     }
 
-    .login-card .nav-tabs {
+    .cartao-login .nav-tabs {
         flex-wrap: nowrap;
         justify-content: space-around;
     }
 
-    .login-card .nav-tabs .nav-link {
+    .cartao-login .nav-tabs .nav-link {
         flex-grow: 1;
         text-align: center;
     }
 
-    .filters-card .row {
+    .cartao-filtros .row {
         flex-direction: column !important;
         gap: 0.25rem !important;
     }
 
-    .filters-card .row > div {
+    .cartao-filtros .row > div {
         margin-bottom: 0 !important;
         padding: 0 !important;
     }
 
-    .dias-desktop {
+    .dias-computador {
         display: none;
     }
 
-    .dias-mobile {
+    .dias-celular {
         display: block;
         text-align: left;
         margin-top: 0.75rem;
     }
     
-    .agendamento-card .row.g-3 {
+    .cartao-agendamento .row.g-3 {
         --bs-gutter-y: 0;
     }
-    .agendamento-card .row.g-3 .col-md-6 p {
+    .cartao-agendamento .row.g-3 .col-md-6 p {
         margin-bottom: 0.75rem;
     }
-    .agendamento-card .row.g-3 .col-md-6:last-child p:last-child {
+    .cartao-agendamento .row.g-3 .col-md-6:last-child p:last-child {
         margin-bottom: 0;
     }
 }
 
-.main-container {
+.container-principal {
+     /* container principal */
     position: relative;
 }
 
 .btn-mobile-sair {
+     /* botão de sair no mobile */
     position: absolute;
     top: 2rem;
     right: 1.5rem;

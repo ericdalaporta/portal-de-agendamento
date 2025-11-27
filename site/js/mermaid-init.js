@@ -1,5 +1,17 @@
 // Inicializa mermaid para todos os diagramas renderizados pelo MkDocs
-window.mermaid = window.mermaid || undefined;
-if (window.mermaid) {
-  window.mermaid.initialize({ startOnLoad: true, theme: 'default' });
-}
+(function () {
+  if (!window.mermaid) {
+    return;
+  }
+
+  window.mermaid.initialize({
+    startOnLoad: true,
+    theme: 'default'
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', window.mermaid.run);
+  } else {
+    window.mermaid.run();
+  }
+})();
