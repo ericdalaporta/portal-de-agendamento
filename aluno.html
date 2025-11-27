@@ -11,18 +11,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css?v=20241126">
 </head>
 
 <body>
 
-    <div class="main-container container-fluid p-4 p-md-5">
-        <a href="index.html" class="btn btn-secondary btn-mobile-sair d-md-none">Sair</a>
+    <div class="container-principal container-fluid p-4 p-md-5">
+        <a href="index.html" class="btn btn-secondary btn-sair-celular d-md-none">Sair</a>
 
         <header class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
             <div>
                 <h4 class="mb-1 fw-bold d-flex align-items-center">
-                    <i class="bi bi-calendar-check text-primary icon-space"></i> Portal de Agendamento
+                    <i class="bi bi-calendar-check text-primary espacamento-icone"></i> Portal de Agendamento
                 </h4>
                 <p class="text-muted mb-1 mb-md-1">Salas e Laboratórios Universitários</p>
             </div>
@@ -46,8 +46,8 @@
             <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="aulas-hoje-view" role="tabpanel">
         <div class="d-grid gap-3" id="aulas-hoje-list">
-            <div class="agendamento-card">
-                <div class="agendamento-header">
+            <div class="cartao-agendamento">
+                <div class="cabecalho-agendamento">
                     <h5><i class="bi bi-building"></i> Sala C10</h5>
                 </div>
                 <div class="row g-3">
@@ -61,8 +61,8 @@
                     </div>
                 </div>
             </div>
-            <div class="agendamento-card">
-                <div class="agendamento-header">
+            <div class="cartao-agendamento">
+                <div class="cabecalho-agendamento">
                     <h5><i class="bi bi-building"></i> Auditório 01</h5>
                 </div>
                 <div class="row g-3">
@@ -81,8 +81,8 @@
 
     <div class="tab-pane fade" id="proximas-aulas-view" role="tabpanel">
         <div class="d-grid gap-3" id="proximas-aulas-list">
-            <div class="agendamento-card">
-                <div class="agendamento-header">
+            <div class="cartao-agendamento">
+                <div class="cabecalho-agendamento">
                     <h5><i class="bi bi-building"></i> Sala F15</h5>
                 </div>
                 <div class="row g-3">
@@ -106,8 +106,8 @@
 
             <div class="tab-pane fade" id="proximas-aulas-view" role="tabpanel">
                 <div class="d-grid gap-3" id="proximas-aulas-list">
-                    <div class="agendamento-card">
-                        <div class="agendamento-header">
+                    <div class="cartao-agendamento">
+                        <div class="cabecalho-agendamento">
                             <h5><i class="bi bi-building"></i> Sala F15</h5>
                         </div>
                         <div class="row g-3">
@@ -132,7 +132,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="./js/script.js?v=20241126"></script>
 </body>
 
 

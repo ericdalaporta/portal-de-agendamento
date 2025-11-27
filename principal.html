@@ -11,19 +11,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css?v=20241126">
 </head>
 
 <body>
 
-    <div class="main-container container-fluid p-4 p-md-5">
+    <div class="container-principal container-fluid p-4 p-md-5">
 
-        <a href="index.html" class="btn btn-secondary btn-mobile-sair d-md-none">Sair</a>
+        <a href="index.html" class="btn btn-secondary btn-sair-celular d-md-none">Sair</a>
 
         <header class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
             <div>
                 <h4 class="mb-1 fw-bold d-flex align-items-center">
-                    <i class="bi bi-calendar-check text-primary icon-space"></i> Portal de Agendamento
+                    <i class="bi bi-calendar-check text-primary espacamento-icone"></i> Portal de Agendamento
                 </h4>
                 <p class="text-muted mb-1 mb-md-1">Salas e Laboratórios Universitários</p>
             </div>
@@ -43,13 +43,13 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="agendamentos-tab" data-bs-toggle="tab" data-bs-target="#agendamentos-view"
                     type="button" role="tab"><i class="bi bi-journal-check me-2"></i> Agendamentos <span
-                        class="badge badge-agendamentos" id="agendamentos-count">0</span></button>
+                        class="badge selo-agendamentos" id="agendamentos-count">0</span></button>
             </li>
         </ul>
 
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="salas-view" role="tabpanel">
-                <div class="filters-card mb-4">
+                <div class="cartao-filtros mb-4">
                     <h6 class="fw-bold mb-3"><i class="bi bi-funnel"></i> Filtros de Busca</h6>
                     <div class="row g-3 align-items-center">
                         <div class="col-lg-6 col-md-12">
@@ -180,7 +180,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
-    <script src="js/script.js"></script>
+    <script src="./js/script.js?v=20241126"></script>
 </body>
 
 
