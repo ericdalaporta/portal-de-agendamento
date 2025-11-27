@@ -32,6 +32,27 @@ body {
     padding: 20px;
     box-sizing: border-box;
     background-color: var(--bs-body-bg);
+    width: 100%;
+    margin: 0 auto;
+}
+
+.cabecalho-principal {
+    gap: 1rem;
+    flex-wrap: nowrap;
+}
+
+.cabecalho-principal > div:first-child {
+    min-width: 0;
+}
+
+.cabecalho-principal .acoes-principais {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    justify-content: flex-end;
 }
 
 .cartao-login,
@@ -219,6 +240,7 @@ body {
      /* ações do cartão de sala */
     display: flex;
     align-items: center;
+    gap: 0.25rem;
 }
 
 .cartao-sala .badge {
@@ -231,18 +253,16 @@ body {
     background-color: transparent;
     border: none;
     color: var(--bs-danger);
-    width: 32px;
+    width: 0;
     height: 32px;
     padding: 0;
-    margin-left: 6px;
     opacity: 0;
     overflow: hidden;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     pointer-events: none;
-    transform: translateX(10px);
 }
 
 .cartao-sala:hover .acoes-cartao-sala .badge {
@@ -252,10 +272,11 @@ body {
 
 .cartao-sala:hover .acoes-cartao-sala .btn-excluir-sala {
      /* botão excluir sala ao passar o mouse */
+    width: 32px;
+    margin-left: 0.35rem;
     opacity: 1;
     border-width: 1px;
     pointer-events: auto;
-    transform: translateX(0);
 }
 
 .status-disponivel {
