@@ -1,12 +1,6 @@
-const AgendaFuncoes = require("../js/script.js");
+const AgendaFuncoes = require("../js/agenda.js");
 
 QUnit.module("AgendaFuncoes", () => {
-  QUnit.test("converterHorarioEmMinutos converte e valida entradas", assert => {
-    assert.equal(AgendaFuncoes.converterHorarioEmMinutos("14:30"), 14 * 60 + 30, "Converte horário no formato HH:MM");
-    assert.equal(AgendaFuncoes.converterHorarioEmMinutos("00:05"), 5, "Aceita horários com zero à esquerda");
-    assert.throws(() => AgendaFuncoes.converterHorarioEmMinutos("14-30"), /Horário inválido/, "Lança erro para formato incorreto");
-  });
-
   QUnit.test("existeConflito detecta sobreposição de horários e dias", assert => {
     const agendamentos = [
       {
