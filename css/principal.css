@@ -1,0 +1,213 @@
+.cabecalho-principal {
+    gap: 1rem;
+    flex-wrap: nowrap;
+}
+
+.cabecalho-principal>div:first-child {
+    min-width: 0;
+}
+
+.cabecalho-principal .acoes-principais {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    justify-content: flex-end;
+}
+
+.cartao-login,
+.cartao-filtros {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border-color);
+    box-shadow: 0 2px 5px var(--card-active-shadow);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.cartao-sala,
+.cartao-agendamento {
+    background-color: #fff;
+    border: 1px solid var(--card-border-color);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* filtros de busca de sala */
+
+.cartao-filtros {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+}
+
+/* cartão que representa uma sala */
+
+.cartao-sala {
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.cartao-sala:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px var(--card-hover-shadow);
+}
+
+.cartao-sala .card-header {
+    background-color: transparent;
+    border-bottom: 1px solid var(--card-border-color);
+    font-weight: 600;
+    min-width: 0;
+}
+
+.cartao-sala .card-header h5 {
+    word-break: break-all;
+}
+
+.cartao-sala .card-body {
+    flex-grow: 1;
+}
+
+.cartao-sala .card-body p {
+    margin-bottom: 0.75rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+}
+
+.cartao-sala .card-body i {
+    margin-right: 14px;
+    font-size: 1.1rem;
+}
+
+.cartao-sala .card-footer {
+    background-color: transparent;
+    border-top: 1px solid var(--card-border-color);
+}
+
+.cartao-agendamento {
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cartao-agendamento:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px var(--card-hover-shadow);
+}
+
+.cabecalho-agendamento {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.cabecalho-agendamento h5 {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.cartao-agendamento .row .col-md-6>p {
+    margin-bottom: 0.5rem !important;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid var(--card-border-color);
+}
+
+.nav-tabs .nav-link {
+    color: var(--text-muted);
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.3s ease;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    background-color: transparent;
+    font-weight: 600;
+}
+
+.dias-semana-badge {
+    display: inline-block;
+    background-color: var(--card-border-color);
+    padding: 0.25rem 0.6rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.selo-agendamentos {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--bs-body-color);
+    background-color: var(--card-border-color);
+    border-radius: 50rem;
+    margin-left: 8px;
+    transform: translateY(-2px);
+    transition: background-color 0.2s ease;
+}
+
+.cartao-sala .acoes-cartao-sala {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.cartao-sala .badge {
+    transition: margin-right 0.3s ease-in-out;
+}
+
+.cartao-sala .btn-excluir-sala {
+    background-color: transparent;
+    border: none;
+    color: var(--bs-danger);
+    width: 0;
+    height: 32px;
+    padding: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.cartao-sala:hover .acoes-cartao-sala .badge {
+    margin-right: 8px;
+}
+
+.cartao-sala:hover .acoes-cartao-sala .btn-excluir-sala {
+    width: 32px;
+    margin-left: 0.35rem;
+    opacity: 1;
+    border-width: 1px;
+    pointer-events: auto;
+}
+
+/* status de sala */
+
+.status-disponivel {
+    color: #198754;
+    font-weight: 500;
+}
+
+.status-ocupada {
+    color: #dc3545;
+    font-weight: 500;
+}

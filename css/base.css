@@ -1,0 +1,50 @@
+:root {
+    --bs-body-bg: #f3f3f3;
+    --bs-body-color: #212529;
+    --card-bg: #fff;
+    --card-border-color: #e9ecef;
+    --card-hover-shadow: rgba(0, 0, 0, 0.08);
+    --card-active-shadow: rgba(0, 0, 0, 0.05);
+    --text-muted: #6c757d;
+}
+
+body {
+    background: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.espacamento-icone {
+    margin-right: 12px;
+}
+
+.container-principal {
+    max-width: 1280px;
+    margin: auto;
+    position: relative;
+}
+
+.form-control,
+.form-select {
+    background-color: transparent;
+    color: var(--bs-body-color);
+    border: 1px solid var(--card-border-color);
+    transition: border-color 0.3s ease;
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.form-control:focus,
+.form-select:focus,
+.btn:focus,
+.nav-tabs .nav-link:focus {
+    box-shadow: none;
+}
+
+.badge.bg-lab-info   { background-color: #22c55e; }
+.badge.bg-sala-aula  { background-color: #64748b; }
+.badge.bg-lab-fisica { background-color: #3b82f6; }
+.badge.bg-auditorio  { background-color: #f59e0b; }

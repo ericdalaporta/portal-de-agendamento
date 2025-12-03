@@ -1,0 +1,45 @@
+.pagina-login {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.container-login {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cartao-login {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 0.75rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border-color);
+    box-shadow: 0 2px 5px var(--card-active-shadow);
+}
+
+.cartao-login .nav-tabs .nav-link {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.cartao-login .nav-tabs .nav-link i {
+    margin-right: 8px;
+}
+
+.btn-mobile-sair {
+    position: absolute;
+    top: 2rem;
+    right: 1.5rem;
+    z-index: 10;
+    background-color: #6c757d;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    line-height: 1.5;
+}

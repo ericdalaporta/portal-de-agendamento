@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ericdalaporta.github.io/portal-de-agendamento/arquitetura/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Arquitetura - Portal de Agendamento</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Arquitetura";
+        var mkdocs_page_input_path = "arquitetura.md";
+        var mkdocs_page_url = "/portal-de-agendamento/arquitetura/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Portal de Agendamento
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Visão Geral</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../guia/">Guia de Uso</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../testes/">Testes e Qualidade</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Arquitetura</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#casos-de-uso">Casos de Uso</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#diagrama-de-classes">Diagrama de Classes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#estrutura-dos-scripts">Estrutura dos Scripts</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Portal de Agendamento</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Arquitetura</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/ericdalaporta/portal-de-agendamento/edit/master/docs/arquitetura.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="arquitetura">Arquitetura<a class="headerlink" href="#arquitetura" title="Permanent link">&para;</a></h1>
+<h2 id="casos-de-uso">Casos de Uso<a class="headerlink" href="#casos-de-uso" title="Permanent link">&para;</a></h2>
+<div class="mermaid">flowchart LR
+    Servidor((Servidor))
+    Aluno((Aluno))
+
+    subgraph Portal_de_Agendamento [Portal de Agendamento]
+        UCLoginServidor([Fazer Login - Servidor])
+        UCFiltrar([Filtrar Salas])
+        UCCriarSala([Criar Sala])
+        UCExcluirSala([Excluir Sala])
+        UCCriarAg([Criar Agendamento])
+        UCEditarAg([Editar Agendamento])
+        UCExcluirAg([Excluir Agendamento])
+
+        UCLoginAluno([Fazer Login - Aluno])
+        UCProximas([Visualizar Próximas Aulas])
+        UCHoje([Visualizar Aulas de Hoje])
+    end
+
+    Servidor --&gt; UCLoginServidor
+    Servidor --&gt; UCFiltrar
+    Servidor --&gt; UCCriarSala
+    Servidor --&gt; UCExcluirSala
+    Servidor --&gt; UCCriarAg
+    Servidor --&gt; UCEditarAg
+    Servidor --&gt; UCExcluirAg
+
+    Aluno --&gt; UCLoginAluno
+    Aluno --&gt; UCProximas
+    Aluno --&gt; UCHoje</div>
+<h2 id="diagrama-de-classes">Diagrama de Classes<a class="headerlink" href="#diagrama-de-classes" title="Permanent link">&para;</a></h2>
+<div class="mermaid">classDiagram
+    direction TB
+
+    class AgendaFuncoes {
+        +converterHorarioEmMinutos(hhmm)
+        +existeConflito(novoAgendamento, lista)
+        +obterStatusSala(salaId, lista, instante?)
+        +filtrarSalas(listaSalas, filtros)
+    }
+
+    class EstadoAplicacao {
+        +Sala[] salasCadastradas
+        +Agendamento[] agendamentosRegistrados
+        +Flatpickr instanciaCalendario
+        +mapaDiasSemana: Record&lt;int,string&gt;
+        +coresPorTipo: Record&lt;string,string&gt;
+    }
+
+    class Renderizadores {
+        +salas(salasFiltradas?)
+        +agendamentos()
+        +filtros()
+    }
+
+    class Manipuladores {
+        +aplicarFiltros()
+        +submeterNovaSala(event)
+        +submeterAgendamento(event)
+        +cliqueGradeSalas(event)
+        +cliqueListaAgendamentos(event)
+        +exibirModalAgendamento(event)
+    }
+
+    class inicializarInterface {
+        +DOM refs (gradeSalas, listaAgendamentos, formulários…)
+        +bootstrap.Modal modalAgendarInstancia
+        +bootstrap.Modal modalNovaSalaInstancia
+        +document.addEventListener('DOMContentLoaded', inicializarInterface)
+    }
+
+    class Sala {
+        +number id
+        +string codigo
+        +string tipo
+        +number capacidade
+        +string localizacao
+    }
+
+    class Agendamento {
+        +number id
+        +number salaId
+        +Periodo periodo
+        +Horario horario
+        +number[] diasSemana
+        +string disciplina
+        +string professor
+        +string cpf
+    }
+
+    class Horario {
+        +string inicio
+        +string fim
+    }
+
+    class Periodo {
+        +string inicio
+        +string fim
+    }
+
+    class DadosAcademicosAluno {
+        +Sala[] salas
+        +Agendamento[] agendamentos
+    }
+
+    class FuncoesAlunoJS {
+        +criarCartaoAgendamento(agendamento, exibirDiasSeparados?)
+        +renderizarAulas()
+    }
+
+    class LoginJS {
+        +processarLoginAluno()
+        +processarLoginServidor()
+    }
+
+    EstadoAplicacao *-- Sala
+    EstadoAplicacao *-- Agendamento
+    Agendamento --&gt; Periodo
+    Agendamento --&gt; Horario
+
+    Renderizadores --&gt; EstadoAplicacao : lê
+    Manipuladores --&gt; EstadoAplicacao : altera
+    inicializarInterface --&gt; Renderizadores
+    inicializarInterface --&gt; Manipuladores
+    inicializarInterface --&gt; AgendaFuncoes : usa
+
+    FuncoesAlunoJS --&gt; DadosAcademicosAluno
+    FuncoesAlunoJS --&gt; AgendaFuncoes : reaproveita
+    LoginJS --&gt; FuncoesAlunoJS : direciona para aluno.html
+    LoginJS --&gt; inicializarInterface : direciona para principal.html</div>
+<h2 id="estrutura-dos-scripts">Estrutura dos Scripts<a class="headerlink" href="#estrutura-dos-scripts" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>js/script.js</code> contém <code>AgendaFuncoes</code>, <code>estadoAplicacao</code>, <code>renderizadores</code>, <code>manipuladores</code> e o <code>inicializarInterface</code>, que integra Bootstrap e Flatpickr.</li>
+<li><code>js/aluno.js</code> possui o módulo de dados acadêmicos e funções de renderização para o painel do aluno.</li>
+<li><code>js/login.js</code> lida apenas com os formulários de autenticação simulada.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../testes/" class="btn btn-neutral float-left" title="Testes e Qualidade"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/ericdalaporta/portal-de-agendamento" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../testes/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      <script src="../js/mermaid-init.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ericdalaporta.github.io/portal-de-agendamento/testes/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Testes e Qualidade - Portal de Agendamento</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Testes e Qualidade";
+        var mkdocs_page_input_path = "testes.md";
+        var mkdocs_page_url = "/portal-de-agendamento/testes/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Portal de Agendamento
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Visão Geral</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../guia/">Guia de Uso</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Testes e Qualidade</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#eslint-9-flat-config">ESLint 9 (flat config)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#testes-unitarios-com-qunit-nyc">Testes Unitários com QUnit + NYC</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#funcoes-testadas">Funções testadas</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../arquitetura/">Arquitetura</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Portal de Agendamento</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Testes e Qualidade</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/ericdalaporta/portal-de-agendamento/edit/master/docs/testes.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="testes-e-qualidade">Testes e Qualidade<a class="headerlink" href="#testes-e-qualidade" title="Permanent link">&para;</a></h1>
+<h2 id="eslint-9-flat-config">ESLint 9 (flat config)<a class="headerlink" href="#eslint-9-flat-config" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w">   </span><span class="c1"># apenas na primeira vez</span>
+npm<span class="w"> </span>run<span class="w"> </span>lint
+</code></pre></div>
+<ul>
+<li>Analisa todos os arquivos em <code>js/</code>.</li>
+<li>Permite <code>console.log</code> e ignora <code>node_modules</code>, <code>site</code> e <code>assets</code>.</li>
+<li>Reporta problemas diretamente no terminal.</li>
+</ul>
+<h2 id="testes-unitarios-com-qunit-nyc">Testes Unitários com QUnit + NYC<a class="headerlink" href="#testes-unitarios-com-qunit-nyc" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w">   </span><span class="c1"># se ainda não fez</span>
+npm<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<ul>
+<li>Executa <code>test/script.test.js</code>, cobrindo as funções de <code>AgendaFuncoes</code>.</li>
+<li>Gera saída TAP no terminal e relatório de cobertura textual.</li>
+<li>Salva um relatório HTML em <code>coverage/index.html</code> (pode ser removido a qualquer momento; é regenerado em cada execução).</li>
+</ul>
+<h3 id="funcoes-testadas">Funções testadas<a class="headerlink" href="#funcoes-testadas" title="Permanent link">&para;</a></h3>
+<ol>
+<li><code>converterHorarioEmMinutos</code> – valida formato HH:MM.</li>
+<li><code>existeConflito</code> – detecta colisões de sala/período/horário/dia.</li>
+<li><code>obterStatusSala</code> – determina se uma sala está ocupada em um instante.</li>
+<li><code>filtrarSalas</code> – aplica filtros combinados de busca, tipo e capacidade.</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../guia/" class="btn btn-neutral float-left" title="Guia de Uso"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../arquitetura/" class="btn btn-neutral float-right" title="Arquitetura">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/ericdalaporta/portal-de-agendamento" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../guia/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../arquitetura/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      <script src="../js/mermaid-init.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

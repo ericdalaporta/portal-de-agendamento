@@ -1,0 +1,24 @@
+site_name: Portal de Agendamento
+site_description: Documentação oficial do front-end do Portal de Agendamento
+site_url: https://ericdalaporta.github.io/portal-de-agendamento/
+repo_url: https://github.com/ericdalaporta/portal-de-agendamento
+nav:
+  - Visão Geral: index.md
+  - Guia de Uso: guia.md
+  - Testes e Qualidade: testes.md
+  - Arquitetura: arquitetura.md
+theme:
+  name: readthedocs
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - js/mermaid-init.js

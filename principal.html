@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sou servidor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/principal.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+
+<body>
+
+    <div class="container-principal container-fluid p-4 p-md-5">
+
+        <header class="cabecalho-principal d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
+            <div>
+                <h4 class="mb-1 fw-bold d-flex align-items-center">
+                    <i class="bi bi-calendar-check text-primary espacamento-icone"></i> Portal de Agendamento
+                </h4>
+                <p class="text-muted mb-1 mb-md-1">Salas e Laboratórios Universitários</p>
+            </div>
+            <div class="acoes-principais d-flex flex-wrap gap-2">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNovaSala">+ Nova
+                    Sala</button>
+                
+                <a href="index.html" class="btn btn-secondary">Sair</a>
+            </div>
+        </header>
+
+        <ul class="nav nav-tabs mb-4" id="mainTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="salas-tab" data-bs-toggle="tab" data-bs-target="#salas-view"
+                    type="button" role="tab"><i class="bi bi-grid-fill me-2"></i> Salas Disponíveis</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="agendamentos-tab" data-bs-toggle="tab" data-bs-target="#agendamentos-view"
+                    type="button" role="tab"><i class="bi bi-journal-check me-2"></i> Agendamentos <span
+                        class="badge selo-agendamentos" id="agendamentos-count">0</span></button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="salas-view" role="tabpanel">
+                <div class="cartao-filtros mb-4">
+                    <h6 class="fw-bold mb-3"><i class="bi bi-funnel"></i> Filtros de Busca</h6>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-lg-6 col-md-12">
+                            <input type="text" class="form-control" id="searchInput"
+                                placeholder="Buscar sala, tipo ou bloco...">
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <select class="form-select" id="tipoSelect">
+                                <option value="">Todos os Tipos</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <select class="form-select" id="capacidadeSelect">
+                                <option value="">Todas as Capacidades</option>
+                                <option value="20">Até 20 pessoas</option>
+                                <option value="40">Até 40 pessoas</option>
+                                <option value="41">Mais de 40 pessoas</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-4" id="salas-grid"></div>
+            </div>
+
+            <div class="tab-pane fade" id="agendamentos-view" role="tabpanel">
+                <div class="d-grid gap-3" id="agendamentos-list">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalNovaSala" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-5 fw-bold" id="modalNovaSalaLabel">Adicionar Nova Sala</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formNovaSala" class="row g-3">
+                        <div class="col-md-6">
+                            <label for="salaNome" class="form-label">Código da Sala</label>
+                            <input type="text" class="form-control" id="salaNome" placeholder="Ex: A101" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="salaTipo" class="form-label">Tipo da Sala</label>
+                            <select id="salaTipo" class="form-select" required>
+                                <option value="" disabled selected>Selecione</option>
+                                <option value="Sala de Aula">Sala de Aula</option>
+                                <option value="Lab. Informática">Lab. Informática</option>
+                                <option value="Lab. Física">Lab. Física</option>
+                                <option value="Auditório">Auditório</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="salaCapacidade" class="form-label">Capacidade</label>
+                            <input type="number" class="form-control" id="salaCapacidade" placeholder="Ex: 30" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="salaBloco" class="form-label">Localização</label>
+                            <input type="text" class="form-control" id="salaBloco" placeholder="Ex: Bloco A" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="formNovaSala" class="btn btn-primary">Adicionar Sala</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalAgendarSala" tabindex="-1" aria-labelledby="modalAgendarSalaLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <div class="d-flex flex-column">
+                        <h1 class="modal-title fs-5 fw-bold mb-1" id="modalAgendarSalaLabel">Agendar Sala</h1>
+                        <p id="modalAgendarSubtitulo" class="text-muted small"></p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formAgendarSala">
+                        <input type="hidden" id="agendamentoSalaId">
+                        <input type="hidden" id="agendamentoEditId">
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label for="agendamentoPeriodo" class="form-label">Período e Dias da Semana</label>
+                                <input type="text" id="agendamentoPeriodo" class="form-control" required
+                                    placeholder="Clique para selecionar">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="agendamentoCpf" class="form-label">CPF do Responsável</label>
+                                <input type="text" id="agendamentoCpf" class="form-control" placeholder="000.000.000-00"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label for="agendamentoHoraInicio" class="form-label">Horário de Início</label>
+                                <input type="text" id="agendamentoHoraInicio" class="form-control" required placeholder="Clique para escolher">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="agendamentoHoraFim" class="form-label">Horário de Fim</label>
+                                <input type="text" id="agendamentoHoraFim" class="form-control" required placeholder="Clique para escolher">
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-6"><label class="form-label">Disciplina</label><input type="text"
+                                    id="agendamentoDisciplina" class="form-control" placeholder="Ex: Programação I"
+                                    required></div>
+                            <div class="col-md-6"><label class="form-label">Professor</label><input type="text"
+                                    id="agendamentoProfessor" class="form-control" placeholder="Ex: Prof. Silva"
+                                    required></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="formAgendarSala" class="btn btn-primary">Confirmar Agendamento</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
+    <script src="./js/agenda.js?v=20241126"></script>
+    <script src="./js/main.js?v=20241126"></script>
+</body>
+
+
+</html>

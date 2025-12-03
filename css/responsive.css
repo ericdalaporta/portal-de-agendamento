@@ -1,0 +1,172 @@
+.dias-celular {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .dias-celular {
+        display: none;
+    }
+
+    .dias-computador {
+        display: block;
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        font-size: 14px;
+        min-height: 100vh;
+    }
+
+    .container-principal {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .container-principal header.d-flex {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .container-principal header .d-flex.gap-2 {
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .container-principal header .btn,
+    .container-principal header a.btn {
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .cartao-filtros,
+    .cartao-agendamento {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    #salas-grid .col-xl-3,
+    #salas-grid .col-lg-4,
+    #salas-grid .col-md-6,
+    #salas-grid .col-sm-12 {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .cartao-sala,
+    .cartao-agendamento {
+        margin-bottom: 0;
+    }
+
+    .cartao-sala .card-body p {
+        font-size: 0.9rem;
+    }
+
+    .cartao-sala .acoes-cartao-sala .btn-excluir-sala {
+        width: auto;
+        padding: 0.375rem 0.75rem;
+        opacity: 1;
+        border-width: 1px;
+        pointer-events: auto;
+        transform: none;
+        margin-left: 0;
+    }
+
+    .nav-tabs {
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.5rem;
+        border-bottom: none;
+        padding: 0;
+        margin-bottom: 1.2rem;
+    }
+
+    .nav-tabs .nav-item {
+        flex: 1 1 0;
+        width: 50%;
+        min-width: 0;
+        margin: 0;
+    }
+
+    .nav-tabs .nav-link {
+        border: none;
+        border-radius: 1.2rem;
+        background: #fff;
+        color: #222;
+        font-size: 0.98rem;
+        font-weight: 500;
+        padding: 0.7rem 0.2rem;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-tabs .nav-link.active {
+        background: var(--bs-primary);
+        color: #fff;
+        font-weight: 600;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+    }
+
+    .nav-tabs .nav-link i,
+    .nav-tabs .nav-link .selo-agendamentos {
+        display: none;
+    }
+
+    .container-login {
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .cartao-login {
+        max-width: 380px;
+        width: 100%;
+        margin: auto;
+    }
+
+    .cartao-login .nav-tabs {
+        flex-wrap: nowrap;
+        justify-content: space-around;
+    }
+
+    .cartao-login .nav-tabs .nav-link {
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .cartao-filtros .row {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .cartao-filtros .row > div {
+        margin-bottom: 0;
+        padding: 0;
+    }
+
+    .dias-computador {
+        display: none;
+    }
+
+    .dias-celular {
+        display: block;
+        text-align: left;
+        margin-top: 0.75rem;
+    }
+
+    .cartao-agendamento .row.g-3 {
+        --bs-gutter-y: 0;
+    }
+
+    .cartao-agendamento .row.g-3 .col-md-6 p {
+        margin-bottom: 0.75rem;
+    }
+
+    .cartao-agendamento .row.g-3 .col-md-6:last-child p:last-child {
+        margin-bottom: 0;
+    }
+}
