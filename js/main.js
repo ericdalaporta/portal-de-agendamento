@@ -4,6 +4,12 @@
     'use strict';
 
     const estadoAplicacao = {
+        // Horários de funcionamento das salas (configuração global)
+        horarioFuncionamento: {
+            inicio: '07:00',
+            fim: '22:00',
+            duracaoSlotMinutos: 60 // slots de 1 hora
+        },
         salasCadastradas: [
             { id: 1, codigo: 'C10', tipo: 'Lab. Informática', capacidade: 32, localizacao: 'Bloco C' },
             { id: 2, codigo: 'A205', tipo: 'Sala de Aula', capacidade: 45, localizacao: 'Bloco A' },
@@ -11,29 +17,28 @@
             { id: 4, codigo: 'AUDIT01', tipo: 'Auditório', capacidade: 120, localizacao: 'Bloco Central' }
         ],
         agendamentosRegistrados: [
-            { id: 101, salaId: 2, periodo: { inicio: '2025-08-26', fim: '2025-12-26' }, horario: { inicio: '14:00', fim: '16:00' }, diasSemana: [2], disciplina: 'Palestra', professor: 'Dr. Estranho', cpf: '111.111.111-11' },
-            { id: 102, salaId: 3, periodo: { inicio: '2025-08-04', fim: '2025-12-12' }, horario: { inicio: '09:00', fim: '11:00' }, diasSemana: [1, 3], disciplina: 'Física Experimental', professor: 'Prof. Santos', cpf: '222.222.222-22' },
-            { id: 103, salaId: 4, periodo: { inicio: '2025-09-10', fim: '2025-12-10' }, horario: { inicio: '19:00', fim: '22:00' }, diasSemana: [3], disciplina: 'Formatura', professor: 'Reitoria', cpf: '333.333.333-33' }
+            { id: 101, salaId: 1, periodo: { inicio: '2025-12-01', fim: '2025-12-20' }, horario: { inicio: '08:00', fim: '10:00' }, diasSemana: [1, 3, 5], disciplina: 'Programação Web', professor: 'Prof. Silva', cpf: '111.111.111-11' },
+            { id: 102, salaId: 2, periodo: { inicio: '2025-12-01', fim: '2025-12-15' }, horario: { inicio: '14:00', fim: '16:00' }, diasSemana: [2, 4], disciplina: 'Cálculo I', professor: 'Prof. Santos', cpf: '222.222.222-22' }
         ],
         instanciaCalendario: null,
         mapaDiasSemana: { 0: 'Dom', 1: 'Seg', 2: 'Ter', 3: 'Qua', 4: 'Qui', 5: 'Sex', 6: 'Sab' },
         coresPorTipo: { 'Lab. Informática': 'lab-info', 'Sala de Aula': 'sala-aula', 'Lab. Física': 'lab-fisica', 'Auditório': 'auditorio' }
     };
 
-    // elementos usados pelo js
+    // elementos usados pelo js (serão preenchidos na inicialização)
     const elementosTela = {
-        gradeSalas: document.getElementById('salas-grid'),
-        listaAgendamentos: document.getElementById('agendamentos-list'),
-        campoBusca: document.getElementById('searchInput'),
-        seletorTipo: document.getElementById('tipoSelect'),
-        seletorCapacidade: document.getElementById('capacidadeSelect'),
-        contadorAgendamentos: document.getElementById('agendamentos-count'),
-        modalAgendarElemento: document.getElementById('modalAgendarSala'),
+        gradeSalas: null,
+        listaAgendamentos: null,
+        campoBusca: null,
+        seletorTipo: null,
+        seletorCapacidade: null,
+        contadorAgendamentos: null,
+        modalAgendarElemento: null,
         modalAgendarInstancia: null,
         modalNovaSalaInstancia: null,
-        formularioAgendamento: document.getElementById('formAgendarSala'),
-        formularioNovaSala: document.getElementById('formNovaSala'),
-        campoCpfAgendamento: document.getElementById('agendamentoCpf')
+        formularioAgendamento: null,
+        formularioNovaSala: null,
+        campoCpfAgendamento: null
     };
 
     // formatadores e validadores
@@ -41,7 +46,7 @@
         formatarDataBR: (dataIso) => dataIso ? dataIso.split('-').reverse().join('/') : '',
         formatarDataISO: (data) => data ? data.toISOString().split('T')[0] : null,
         existeConflito: (novoAgendamento) => AgendaFuncoes.existeConflito(novoAgendamento, estadoAplicacao.agendamentosRegistrados),
-        obterStatusSala: (salaId) => AgendaFuncoes.obterStatusSala(salaId, estadoAplicacao.agendamentosRegistrados),
+        obterStatusSala: (salaId) => AgendaFuncoes.obterStatusSala(salaId, estadoAplicacao.agendamentosRegistrados, estadoAplicacao.horarioFuncionamento),
 
         aplicarMascaraCpf: (valorBruto) => {
             const numeros = (valorBruto || '').replace(/\D/g, '').slice(0, 11);
@@ -83,6 +88,7 @@
                                     <h5 class="mb-0 fw-bold">${sala.codigo}</h5>
                                     <div class="acoes-cartao-sala">
                                         <span class="badge bg-${corTipo}">${sala.tipo}</span>
+                                        <button class="btn btn-sm btn-outline-primary btn-editar-sala" data-sala-id="${sala.id}" data-bs-toggle="modal" data-bs-target="#modalNovaSala" title="Editar Sala"><i class="bi bi-pencil"></i></button>
                                         <button class="btn btn-sm btn-outline-danger btn-excluir-sala" data-sala-id="${sala.id}" title="Excluir Sala"><i class="bi bi-trash"></i></button>
                                     </div>
                                 </div>
@@ -120,9 +126,9 @@
                         <div class="cartao-agendamento">
                             <div class="cabecalho-agendamento">
                                 <h5><i class="bi bi-building"></i> Sala ${salaRelacionada.codigo}</h5>
-                                <div>
-                                    <button class="btn btn-sm btn-outline-primary btn-edit" data-bs-toggle="modal" data-bs-target="#modalAgendarSala" data-agendamento-id="${agendamento.id}"><i class="bi bi-pencil-square"></i></button>
-                                    <button class="btn btn-sm btn-outline-danger btn-delete" data-agendamento-id="${agendamento.id}"><i class="bi bi-trash"></i></button>
+                                <div class="acoes-agendamento">
+                                    <button class="btn btn-sm btn-outline-primary btn-edit" data-bs-toggle="modal" data-bs-target="#modalAgendarSala" data-agendamento-id="${agendamento.id}" title="Editar"><i class="bi bi-pencil"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger btn-delete" data-agendamento-id="${agendamento.id}" title="Excluir"><i class="bi bi-trash"></i></button>
                                 </div>
                             </div>
                             <div class="row g-3">
@@ -164,17 +170,59 @@
         },
         submeterNovaSala: (evento) => {
             evento.preventDefault();
-            estadoAplicacao.salasCadastradas.push({
-                id: Date.now(),
+            const idEdicao = parseInt(document.getElementById('salaEditId').value, 10) || 0;
+            const dadosSala = {
+                id: idEdicao || Date.now(),
                 codigo: document.getElementById('salaNome').value.trim(),
                 capacidade: parseInt(document.getElementById('salaCapacidade').value, 10),
                 tipo: document.getElementById('salaTipo').value,
                 localizacao: document.getElementById('salaBloco').value.trim(),
-            });
+            };
+
+            if (idEdicao) {
+                // Editar sala existente
+                const indiceSala = estadoAplicacao.salasCadastradas.findIndex(sala => sala.id === idEdicao);
+                if (indiceSala !== -1) {
+                    estadoAplicacao.salasCadastradas[indiceSala] = dadosSala;
+                }
+            } else {
+                // Adicionar nova sala
+                estadoAplicacao.salasCadastradas.push(dadosSala);
+            }
+
             manipuladores.aplicarFiltros();
             renderizadores.filtros();
+            renderizadores.agendamentos();
             evento.target.reset();
+            document.getElementById('salaEditId').value = '';
             elementosTela.modalNovaSalaInstancia.hide();
+        },
+        exibirModalNovaSala: (evento) => {
+            const botaoAcionado = evento.relatedTarget;
+            const salaId = botaoAcionado?.dataset?.salaId ? parseInt(botaoAcionado.dataset.salaId, 10) : null;
+            
+            const tituloModal = document.getElementById('modalNovaSalaLabel');
+            const btnSubmit = document.getElementById('btnSubmitSala');
+            
+            if (salaId) {
+                // Modo edição
+                const sala = estadoAplicacao.salasCadastradas.find(s => s.id === salaId);
+                if (sala) {
+                    tituloModal.textContent = 'Editar Sala';
+                    btnSubmit.textContent = 'Salvar Alterações';
+                    document.getElementById('salaEditId').value = sala.id;
+                    document.getElementById('salaNome').value = sala.codigo;
+                    document.getElementById('salaCapacidade').value = sala.capacidade;
+                    document.getElementById('salaTipo').value = sala.tipo;
+                    document.getElementById('salaBloco').value = sala.localizacao;
+                }
+            } else {
+                // Modo criação
+                tituloModal.textContent = 'Adicionar Nova Sala';
+                btnSubmit.textContent = 'Adicionar Sala';
+                document.getElementById('salaEditId').value = '';
+                elementosTela.formularioNovaSala.reset();
+            }
         },
         submeterAgendamento: (evento) => {
             evento.preventDefault();
@@ -331,6 +379,18 @@
 
     // iniciar a tela do servidor
     function inicializarInterface() {
+        // Capturar elementos do DOM
+        elementosTela.gradeSalas = document.getElementById('salas-grid');
+        elementosTela.listaAgendamentos = document.getElementById('agendamentos-list');
+        elementosTela.campoBusca = document.getElementById('searchInput');
+        elementosTela.seletorTipo = document.getElementById('tipoSelect');
+        elementosTela.seletorCapacidade = document.getElementById('capacidadeSelect');
+        elementosTela.contadorAgendamentos = document.getElementById('agendamentos-count');
+        elementosTela.modalAgendarElemento = document.getElementById('modalAgendarSala');
+        elementosTela.formularioAgendamento = document.getElementById('formAgendarSala');
+        elementosTela.formularioNovaSala = document.getElementById('formNovaSala');
+        elementosTela.campoCpfAgendamento = document.getElementById('agendamentoCpf');
+
         if (!elementosTela.gradeSalas) {
             return;
         }
@@ -349,6 +409,7 @@
         elementosTela.gradeSalas.addEventListener('click', manipuladores.cliqueGradeSalas);
         elementosTela.listaAgendamentos.addEventListener('click', manipuladores.cliqueListaAgendamentos);
         elementosTela.modalAgendarElemento.addEventListener('show.bs.modal', manipuladores.exibirModalAgendamento);
+        document.getElementById('modalNovaSala').addEventListener('show.bs.modal', manipuladores.exibirModalNovaSala);
 
         // máscara e feedback visual do CPF enquanto o usuário digita
         if (elementosTela.campoCpfAgendamento) {

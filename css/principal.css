@@ -111,6 +111,35 @@
     font-weight: 600;
 }
 
+.acoes-agendamento {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.acoes-agendamento .btn {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    font-size: 1.25rem;
+}
+
+.acoes-agendamento .btn-edit {
+    color: var(--bs-primary);
+}
+
+.acoes-agendamento .btn-delete {
+    color: var(--bs-danger);
+}
+
+.acoes-agendamento .btn:hover {
+    opacity: 0.7;
+}
+
 .cartao-agendamento .row .col-md-6>p {
     margin-bottom: 0.5rem !important;
 }
@@ -172,10 +201,10 @@
     transition: margin-right 0.3s ease-in-out;
 }
 
-.cartao-sala .btn-excluir-sala {
+.cartao-sala .btn-excluir-sala,
+.cartao-sala .btn-editar-sala {
     background-color: transparent;
     border: none;
-    color: var(--bs-danger);
     width: 0;
     height: 32px;
     padding: 0;
@@ -188,13 +217,21 @@
     pointer-events: none;
 }
 
-.cartao-sala:hover .acoes-cartao-sala .badge {
-    margin-right: 8px;
+.cartao-sala .btn-excluir-sala {
+    color: var(--bs-danger);
 }
 
-.cartao-sala:hover .acoes-cartao-sala .btn-excluir-sala {
-    width: 32px;
-    margin-left: 0.35rem;
+.cartao-sala .btn-editar-sala {
+    color: var(--bs-primary);
+}
+
+.cartao-sala:hover .acoes-cartao-sala .badge {
+    margin-right: 4px;
+}
+
+.cartao-sala:hover .acoes-cartao-sala .btn-excluir-sala,
+.cartao-sala:hover .acoes-cartao-sala .btn-editar-sala {
+    width: 22px;
     opacity: 1;
     border-width: 1px;
     pointer-events: auto;

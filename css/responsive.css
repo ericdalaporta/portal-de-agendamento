@@ -25,9 +25,25 @@
 
     .container-principal header.d-flex {
         flex-direction: column;
-        align-items: stretch;
+        align-items: flex-start;
         gap: 1.5rem;
         margin-bottom: 1.5rem;
+    }
+
+    .container-principal header h4 {
+        font-size: 1.4rem;
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    .container-principal header p {
+        font-size: 0.95rem;
+        text-align: left;
+    }
+
+    .container-principal header > div:first-child {
+        text-align: left;
+        width: 100%;
     }
 
     .container-principal header .d-flex.gap-2 {
@@ -66,14 +82,26 @@
         font-size: 0.9rem;
     }
 
-    .cartao-sala .acoes-cartao-sala .btn-excluir-sala {
-        width: auto;
-        padding: 0.375rem 0.75rem;
+    .cartao-sala .acoes-cartao-sala {
+        gap: 0,000000001rem;
+    }
+
+    .cartao-sala .acoes-cartao-sala .badge {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    .cartao-sala .acoes-cartao-sala .btn-excluir-sala,
+    .cartao-sala .acoes-cartao-sala .btn-editar-sala {
+        width: 36px;
+        height: 36px;
+        padding: 0;
         opacity: 1;
         border-width: 1px;
         pointer-events: auto;
         transform: none;
         margin-left: 0;
+        font-size: 1.1rem;
     }
 
     .nav-tabs {

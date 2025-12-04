@@ -91,6 +91,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="formNovaSala" class="row g-3">
+                        <input type="hidden" id="salaEditId">
                         <div class="col-md-6">
                             <label for="salaNome" class="form-label">Código da Sala</label>
                             <input type="text" class="form-control" id="salaNome" placeholder="Ex: A101" required>
@@ -117,7 +118,7 @@
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" form="formNovaSala" class="btn btn-primary">Adicionar Sala</button>
+                    <button type="submit" form="formNovaSala" class="btn btn-primary" id="btnSubmitSala">Adicionar Sala</button>
                 </div>
             </div>
         </div>

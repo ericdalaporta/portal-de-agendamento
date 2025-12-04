@@ -40,27 +40,39 @@ const AgendaFuncoes = (() => {
         });
     }
 
-    function obterStatusSala(salaId, agendamentos, instanteAtual = new Date()) {
-        const ocupadaAgora = Array.isArray(agendamentos) && agendamentos.some(agendamento => {
-            if (agendamento.salaId !== salaId) {
-                return false;
-            }
-            const inicioPeriodo = new Date(agendamento.periodo.inicio);
-            const fimPeriodo = new Date(agendamento.periodo.fim);
-            fimPeriodo.setDate(fimPeriodo.getDate() + 1);
-            if (!(instanteAtual >= inicioPeriodo && instanteAtual < fimPeriodo)) {
-                return false;
-            }
-            if (!agendamento.diasSemana.includes(instanteAtual.getDay())) {
-                return false;
-            }
-            const horas = String(instanteAtual.getHours()).padStart(2, '0');
-            const minutos = String(instanteAtual.getMinutes()).padStart(2, '0');
-            const horarioAtual = `${horas}:${minutos}`;
-            const inicioHorario = agendamento.horario.inicio || '00:00';
-            const fimHorario = agendamento.horario.fim || '00:00';
-            return horarioAtual >= inicioHorario && horarioAtual < fimHorario;
+    function obterStatusSala(salaId, agendamentos, horarioFuncionamento = null, instanteAtual = new Date()) {
+        // Configuração de funcionamento: 7h às 22h
+        const config = horarioFuncionamento || { inicio: '07:00', fim: '22:00' };
+        
+        // Horário atual formatado
+        const horaAtual = String(instanteAtual.getHours()).padStart(2, '0');
+        const minAtual = String(instanteAtual.getMinutes()).padStart(2, '0');
+        const horarioAtual = `${horaAtual}:${minAtual}`;
+        
+        // Verifica se está fora do horário de funcionamento
+        if (horarioAtual < config.inicio || horarioAtual >= config.fim) {
+            return { status: 'Disponível', motivo: 'Fora do horário de funcionamento' };
+        }
+
+        // Verifica se existe algum agendamento ocupando a sala agora
+        const ocupadaAgora = Array.isArray(agendamentos) && agendamentos.some(ag => {
+            if (ag.salaId !== salaId) return false;
+            
+            // Verifica período
+            const inicio = new Date(ag.periodo.inicio);
+            const fim = new Date(ag.periodo.fim);
+            fim.setHours(23, 59, 59);
+            if (instanteAtual < inicio || instanteAtual > fim) return false;
+            
+            // Verifica dia da semana
+            if (!ag.diasSemana.includes(instanteAtual.getDay())) return false;
+            
+            // Verifica horário
+            const agInicio = ag.horario.inicio || '00:00';
+            const agFim = ag.horario.fim || '23:59';
+            return horarioAtual >= agInicio && horarioAtual < agFim;
         });
+
         return { status: ocupadaAgora ? 'Ocupada' : 'Disponível' };
     }
 
