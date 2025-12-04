@@ -40,19 +40,22 @@ const AgendaFuncoes = (() => {
         });
     }
 
-    function obterStatusSala(salaId, agendamentos, horarioFuncionamento = null, instanteAtual = new Date()) {
-        // Configuração de funcionamento: 7h às 22h
-        const config = horarioFuncionamento || { inicio: '07:00', fim: '22:00' };
+    function obterStatusSala(salaId, agendamentos, terceiroArg = null, quartoArg = null) {
+        // Compatibilidade: terceiro arg pode ser Date (instante) ou objeto (config)
+        let instanteAtual, config;
+        
+        if (terceiroArg instanceof Date) {
+            instanteAtual = terceiroArg;
+            config = { inicio: '07:00', fim: '22:00' };
+        } else {
+            config = terceiroArg || { inicio: '07:00', fim: '22:00' };
+            instanteAtual = quartoArg || new Date();
+        }
         
         // Horário atual formatado
         const horaAtual = String(instanteAtual.getHours()).padStart(2, '0');
         const minAtual = String(instanteAtual.getMinutes()).padStart(2, '0');
         const horarioAtual = `${horaAtual}:${minAtual}`;
-        
-        // Verifica se está fora do horário de funcionamento
-        if (horarioAtual < config.inicio || horarioAtual >= config.fim) {
-            return { status: 'Disponível', motivo: 'Fora do horário de funcionamento' };
-        }
 
         // Verifica se existe algum agendamento ocupando a sala agora
         const ocupadaAgora = Array.isArray(agendamentos) && agendamentos.some(ag => {
