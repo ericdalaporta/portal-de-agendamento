@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     padding: 24px;
+    overflow: hidden;
 }
 
 .container-login {
@@ -31,6 +32,34 @@
 
 .cartao-login .nav-tabs .nav-link i {
     margin-right: 8px;
+}
+
+/* Estilo desktop para tabs - traço azul */
+@media (min-width: 768px) {
+    .cartao-login .nav-tabs {
+        border-bottom: none;
+    }
+
+    .cartao-login .nav-tabs .nav-link {
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+        color: #6c757d;
+        border-bottom: 2px solid transparent;
+    }
+
+    .cartao-login .nav-tabs .nav-link:hover {
+        border: none;
+        border-bottom: 2px solid transparent;
+        background-color: transparent;
+    }
+
+    .cartao-login .nav-tabs .nav-link.active {
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid var(--bs-primary, #0d6efd);
+        color: var(--bs-primary, #0d6efd);
+    }
 }
 
 .btn-mobile-sair {
